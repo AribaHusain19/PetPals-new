@@ -44,7 +44,7 @@ app.get('*', (req, res) => {
 }
  
 //To use mongodb with express, you'll need the mongoose package to connect to the MongoDB database.
-const mongourl= process.env.MONGO_URI ||'mongodb+srv://ariba:ariba@cluster0.u8thuxs.mongodb.net/PetPalsDatabase?retryWrites=true&w=majority&appName=Cluster0';
+const mongourl= process.env.MONGO_URI;
 
 
 
