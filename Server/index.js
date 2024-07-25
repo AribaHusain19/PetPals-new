@@ -15,8 +15,8 @@ const adoptionRoutes = require('./routes/adoption');
 const app=express();
 
 
-const PORT = process.env.PORT || 4000;
-const BACKEND_URI = process.env.BACKEND_URI || 'http://localhost:4000';
+const PORT = process.env.PORT;
+const BACKEND_URI = process.env.BACKEND_URI;
 console.log('Backend URL:', BACKEND_URI);
 // Middleware to parse JSON bodies
 app.use(express.json());
