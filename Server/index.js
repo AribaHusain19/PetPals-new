@@ -15,7 +15,7 @@ const adoptionRoutes = require('./routes/adoption');
 const app=express();
 
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT||4000;
 const BACKEND_URI = process.env.BACKEND_URI;
 console.log('Backend URL:', BACKEND_URI);
 // Middleware to parse JSON bodies
@@ -36,10 +36,10 @@ app.use('/api/adoption',adoptionRoutes);
 
 app.use('/public',express.static(path.join(__dirname,'public')));
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.use(express.static(path.join(__dirname,'..', 'client','build')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.sendFile(path.join(__dirname,'..', 'client','build', 'index.html'));
   });
 }
  
@@ -56,10 +56,10 @@ app.listen(PORT,() =>{
 
 
 //Connects to the MongoDB database using Mongoose.
-mongoose.connect(mongourl).then(()=>{
+mongoose.connect(mongourl,{useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
     console.log("connected to mongoDB")
 }).catch((err) => {
-    console.log("Error in connecting to mongoDB");
+    console.log("Error in connecting to mongoDB",err);
 })
 
 /*mongoose.connection.on('connected',()=>{
